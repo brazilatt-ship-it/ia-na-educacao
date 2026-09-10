@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Página do chaveiro: seis demonstrações de IA para a apresentação do 7º ano sobre IA na educação.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎒</text></svg>">
+<title>IA na Educação</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #FAFAF6;
+    --sheet: #FFFFFF;
+    --line: #E3E3DA;
+    --ink: #1B1F3A;
+    --ink-2: #5E627A;
+    --marker: #FFE94A;
+    --marker-ink: #1B1F3A;
+    --cobalt: #2B4BE0;
+    --chip: #EEF0F7;
+    --chip-ink: #3F4463;
+    --shadow: 0 1px 0 rgba(27,31,58,.06), 0 6px 18px rgba(27,31,58,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14162A;
+      --sheet: #1D2040;
+      --line: #2C3057;
+      --ink: #EEEFF7;
+      --ink-2: #A3A7C4;
+      --marker: #FFD52E;
+      --marker-ink: #14162A;
+      --cobalt: #8FA3FF;
+      --chip: #262A50;
+      --chip-ink: #C3C7E3;
+      --shadow: 0 1px 0 rgba(0,0,0,.25), 0 8px 22px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14162A;
+    --sheet: #1D2040;
+    --line: #2C3057;
+    --ink: #EEEFF7;
+    --ink-2: #A3A7C4;
+    --marker: #FFD52E;
+    --marker-ink: #14162A;
+    --cobalt: #8FA3FF;
+    --chip: #262A50;
+    --chip-ink: #C3C7E3;
+    --shadow: 0 1px 0 rgba(0,0,0,.25), 0 8px 22px rgba(0,0,0,.3);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    padding-inline: 16px;
+    padding-block: 24px 48px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+
+  header { display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow {
+    display: inline-flex; align-self: flex-start; align-items: center; gap: 8px;
+    font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    background: var(--marker); color: var(--marker-ink);
+    padding: 4px 10px; border-radius: 3px; transform: rotate(-1.2deg);
+  }
+  h1 {
+    margin: 0;
+    font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    font-weight: 800; font-size: clamp(34px, 9vw, 44px); line-height: 1.02;
+    letter-spacing: -.02em; text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--cobalt); }
+  .lede { margin: 0; color: var(--ink-2); font-size: 16px; max-width: 34ch; }
+  .lede strong { color: var(--ink); font-weight: 700; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: passo; }
+  .step {
+    counter-increment: passo;
+    background: var(--sheet); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid; grid-template-columns: 44px 1fr; gap: 0;
+    overflow: hidden;
+  }
+  .num {
+    display: grid; place-items: start center; padding-top: 16px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 20px;
+    color: var(--ink-2); border-right: 1px dashed var(--line);
+    font-variant-numeric: tabular-nums;
+  }
+  .num::before { content: counter(passo); }
+  .body { padding: 14px 14px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .title {
+    margin: 0; font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -.01em;
+  }
+  .do { margin: 0; }
+  .shows { margin: 0; color: var(--ink-2); font-size: 15px; }
+  .shows::before { content: "Mostra que "; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    background: var(--chip); color: var(--chip-ink); padding: 3px 8px; border-radius: 999px;
+  }
+  .chip.warn { background: var(--marker); color: var(--marker-ink); }
+  .go {
+    margin-top: 4px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--ink); color: var(--paper);
+    text-decoration: none; font-weight: 700; font-size: 17px;
+    padding: 13px 16px; border-radius: 9px;
+    min-height: 48px;
+  }
+  .go span:last-child { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; }
+  .go:focus-visible, a:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 2px; }
+  @media (hover:hover) { .go:hover { background: var(--cobalt); color: #fff; } }
+
+  .note {
+    background: var(--sheet); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; font-size: 15px;
+  }
+  .note h2 {
+    margin: 0; font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .note p { margin: 0; }
+  .note a { color: var(--cobalt); }
+  footer { color: var(--ink-2); font-size: 13px; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .eyebrow { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">7º ano · IA na educação</span>
+    <h1>O que a <em>inteligência artificial</em> faz na escola?</h1>
+    <p class="lede">Você chegou aqui pelo chaveiro. Siga os passos na ordem da apresentação, <strong>tudo abre no seu celular</strong>.</p>
+  </header>
+
+  <ol class="steps">
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">Desenhe e a IA adivinha</h2>
+        <p class="do">Você tem 20 segundos para desenhar o que o jogo pedir. A IA tenta acertar enquanto você desenha.</p>
+        <p class="shows">a IA aprendeu olhando milhões de desenhos de outras pessoas.</p>
+        <div class="chips"><span class="chip">Em português</span><span class="chip">Sem cadastro</span></div>
+        <a class="go" href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener"><span>Abrir Quick, Draw!</span><span>→</span></a>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">Rabisco vira desenho</h2>
+        <p class="do">Desenhe qualquer coisa do jeito que sair. A IA sugere a versão bem feita e você troca com um toque.</p>
+        <p class="shows">a IA pode ser uma ajudante do aluno, sem fazer o trabalho por ele.</p>
+        <div class="chips"><span class="chip">Sem cadastro</span></div>
+        <a class="go" href="https://www.autodraw.com/" target="_blank" rel="noopener"><span>Abrir AutoDraw</span><span>→</span></a>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">Caça ao emoji com a câmera</h2>
+        <p class="do">Aparece um emoji e você precisa apontar a câmera para aquele objeto na sala antes do tempo acabar.</p>
+        <p class="shows">a IA consegue enxergar e reconhecer coisas do mundo real.</p>
+        <div class="chips"><span class="chip warn">Pede a câmera</span><span class="chip">Em inglês</span></div>
+        <a class="go" href="https://emojiscavengerhunt.withgoogle.com/" target="_blank" rel="noopener"><span>Abrir Emoji Scavenger Hunt</span><span>→</span></a>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">Qual rosto é de verdade?</h2>
+        <p class="do">Duas fotos. Uma é de uma pessoa real, a outra foi inventada por uma IA. Toque na que você acha que é real.</p>
+        <p class="shows">nem tudo que parece foto é foto. Vale desconfiar do que chega pela internet.</p>
+        <div class="chips"><span class="chip">Em inglês</span><span class="chip">Sem cadastro</span></div>
+        <a class="go" href="https://www.whichfaceisreal.com/" target="_blank" rel="noopener"><span>Abrir Which Face Is Real</span><span>→</span></a>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">Pergunte como se fosse um professor</h2>
+        <p class="do">Peça: "explique fotossíntese para alguém de 12 anos". Depois peça de outro jeito e compare as respostas.</p>
+        <p class="shows">a IA explica de vários jeitos, mas também pode errar. Quem confere é você.</p>
+        <div class="chips"><span class="chip">Sem cadastro</span><span class="chip">Em português</span></div>
+        <a class="go" href="https://copilot.microsoft.com/" target="_blank" rel="noopener"><span>Abrir Copilot</span><span>→</span></a>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="num" aria-hidden="true"></div>
+      <div class="body">
+        <h2 class="title">A turma treina uma IA</h2>
+        <p class="do">No notebook do projetor: a câmera aprende "mão levantada" e "mão abaixada" com uns 20 exemplos de cada e passa a reconhecer sozinha.</p>
+        <p class="shows">a IA não nasce sabendo. Ela aprende com exemplos, e exemplos ruins geram uma IA ruim.</p>
+        <div class="chips"><span class="chip warn">Melhor no notebook</span><span class="chip">Em inglês</span></div>
+        <a class="go" href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener"><span>Abrir Teachable Machine</span><span>→</span></a>
+      </div>
+    </li>
+  </ol>
+
+  <section class="note">
+    <h2>Se algo não abrir</h2>
+    <p>Os passos 1, 2, 4 e 5 funcionam em qualquer celular com internet. O passo 3 precisa que você permita o uso da câmera quando o navegador perguntar.</p>
+    <p>Todos os sites são de terceiros (Google, Microsoft e a Universidade de Washington).</p>
+  </section>
+
+  <footer>Página feita para a apresentação de IA na educação, 7º ano, 2026.</footer>
+</div>
+</body>
+</html>
